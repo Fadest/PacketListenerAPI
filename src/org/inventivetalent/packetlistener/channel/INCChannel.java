@@ -57,7 +57,7 @@ public class INCChannel extends ChannelAbstract {
 	io.netty.channel.Channel getChannel(Player player) throws ReflectiveOperationException {
 		final Object handle = Minecraft.getHandle(player);
 		final Object connection = playerConnection.get(handle);
-		return (io.netty.channel.Channel) channelField.get(networkManager.get(connection));
+		return channelField.get(networkManager.get(connection));
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class INCChannel extends ChannelAbstract {
 					try {
 						io.netty.channel.Channel channel = null;
 						while (channel == null) {
-							channel = (io.netty.channel.Channel) channelField.get(a);
+							channel = channelField.get(a);
 						}
 						if (channel.pipeline().get(KEY_SERVER) == null) {
 							channel.pipeline().addBefore(KEY_HANDLER, KEY_SERVER, new ChannelHandler(new INCChannelWrapper(channel)));
@@ -96,7 +96,7 @@ public class INCChannel extends ChannelAbstract {
 					try {
 						io.netty.channel.Channel channel = null;
 						while (channel == null) {
-							channel = (io.netty.channel.Channel) channelField.get(a);
+							channel = channelField.get(a);
 						}
 						channel.pipeline().remove(KEY_SERVER);
 					} catch (Exception e) {
@@ -110,7 +110,7 @@ public class INCChannel extends ChannelAbstract {
 
 	class ChannelHandler extends ChannelDuplexHandler implements IChannelHandler {
 
-		private Object owner;
+		private final Object owner;
 
 		public ChannelHandler(Player player) {
 			this.owner = player;

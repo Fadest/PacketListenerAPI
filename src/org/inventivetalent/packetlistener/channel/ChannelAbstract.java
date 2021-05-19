@@ -48,7 +48,7 @@ public abstract class ChannelAbstract {
     static final String KEY_PLAYER = "packet_listener_player";
     static final String KEY_SERVER = "packet_listener_server";
 
-    private IPacketListener iPacketListener;
+    private final IPacketListener iPacketListener;
 
     public ChannelAbstract(IPacketListener iPacketListener) {
         this.iPacketListener = iPacketListener;
@@ -64,7 +64,7 @@ public abstract class ChannelAbstract {
             if (dedicatedServer == null) { return; }
             Object serverConnection = ChannelAbstract.serverConnection.get(dedicatedServer);
             if (serverConnection == null) { return; }
-            List currentList = (List<?>) connectionList.get(serverConnection);
+            List currentList = connectionList.get(serverConnection);
             if (!currentList.isEmpty()) {
                 // Try to check if our list is already set
                 try {

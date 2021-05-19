@@ -18,12 +18,6 @@ public class ChannelInjector {
 	public boolean inject(IPacketListener iPacketListener) {
 		List<Exception> exceptions = new ArrayList<>();
 		try {
-			Class.forName("net.minecraft.util.io.netty.channel.Channel");
-			throw new UnsupportedOperationException("Unsupported Server Version!");
-		} catch (Exception e) {
-			exceptions.add(e);
-		}
-		try {
 			Class.forName("io.netty.channel.Channel");
 			channel = newChannelInstance(iPacketListener, "org.inventivetalent.packetlistener.channel.INCChannel");
 			System.out.println("[PacketListenerAPI] Using INChannel");
