@@ -174,7 +174,7 @@ public abstract class PacketHandler {
 		try {
 			Object handle = Minecraft.getHandle(p);
 			Object connection = EntityPlayerFieldResolver.resolve("playerConnection").get(handle);
-			PlayerConnectionMethodResolver.resolve("sendPacket").invoke(connection, new Object[] { packet });
+			PlayerConnectionMethodResolver.resolve("sendPacket").invoke(connection, packet);
 		} catch (Exception e) {
 			System.err.println("[PacketListenerAPI] Exception while sending " + packet + " to " + p);
 			e.printStackTrace();

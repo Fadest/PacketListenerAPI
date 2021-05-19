@@ -7,11 +7,11 @@ import org.inventivetalent.reflection.resolver.FieldResolver;
 
 public abstract class PacketAbstract {
 
-	private Player         player;
+	private Player player;
 	private ChannelWrapper channelWrapper;
 
-	private Object      packet;
-	private Cancellable cancellable;
+	private Object packet;
+	private final Cancellable cancellable;
 
 	protected FieldResolver fieldResolver;
 
